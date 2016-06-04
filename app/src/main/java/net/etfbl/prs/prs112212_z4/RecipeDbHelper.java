@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /****************************************************************************
@@ -86,7 +88,9 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
 
     public RecipeDTO insert(RecipeDTO recipeDTO) {
         SQLiteDatabase db = getDb();
-        ContentValues values = recipe2ContentValues(recipeDTO);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.mm.yyyy hh:mm:ss");
+        recipeDTO.setDate(simpleDateFormat.format(new Date()));
+        ContentValues values = recipe2ContentValues(recipeDTO, false);
         Log.d(TAG, "Insert: " + recipeDTO);
         recipeDTO.setId((int) db.insert(TABLE_RECIPE, null, values));
         return recipeDTO;
@@ -94,7 +98,9 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
 
     public RecipeDTO update(RecipeDTO recipeDTO) {
         SQLiteDatabase db = getDb();
-        ContentValues values = recipe2ContentValues(recipeDTO);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.mm.yyyy hh:mm:ss");
+        recipeDTO.setDate(simpleDateFormat.format(new Date()));
+        ContentValues values = recipe2ContentValues(recipeDTO, false);
         db.update(TABLE_RECIPE, values, " id = ?", new String[]{Long.toString(recipeDTO.getId())});
         return recipeDTO;
     }
@@ -113,9 +119,10 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         return recipeDTO;
     }
 
-    private ContentValues recipe2ContentValues(RecipeDTO recipeDTO) {
+    private ContentValues recipe2ContentValues(RecipeDTO recipeDTO, boolean update) {
         ContentValues values = new ContentValues();
-        values.put(COL_ID, recipeDTO.getId());
+        if (update)
+            values.put(COL_ID, recipeDTO.getId());
         values.put(COL_DATE, recipeDTO.getDate());
         values.put(COL_DURATION, recipeDTO.getDuration());
         values.put(COL_INGREDIENTS, recipeDTO.getIngredients());

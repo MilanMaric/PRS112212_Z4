@@ -31,6 +31,26 @@ public class RecipeDTO implements Serializable {
     private String prepare;
     private String sdbm;
 
+    public RecipeDTO() {
+
+    }
+
+    public RecipeDTO(int duration, String name, String ingredients, String prepare) {
+        this.duration = duration;
+        this.name = name;
+        this.ingredients = ingredients;
+        this.prepare = prepare;
+    }
+
+    public RecipeDTO(String date, int duration, String name, String ingredients, String prepare, String sdbm) {
+        this.date = date;
+        this.duration = duration;
+        this.name = name;
+        this.ingredients = ingredients;
+        this.prepare = prepare;
+        this.sdbm = sdbm;
+    }
+
     public RecipeDTO(int id, String date, int duration, String name, String ingredients, String prepare, String sdbm) {
         this.id = id;
         this.date = date;
