@@ -63,7 +63,14 @@ public class RecipeAdapter extends BaseAdapter {
         }
         RecipeDTO recipe = (RecipeDTO) getItem(position);
         TextView title = (TextView) view.findViewById(R.id.name);
+        TextView ingredients = (TextView) view.findViewById(R.id.ingridients);
+        TextView preparation = (TextView) view.findViewById(R.id.prepare);
+        TextView date = (TextView) view.findViewById(R.id.date);
+
         title.setText(recipe.getName());
+        ingredients.setText(recipe.getIngredients());
+        preparation.setText(recipe.getPrepare());
+        date.setText(recipe.getDate());
         return view;
     }
 

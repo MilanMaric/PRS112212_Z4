@@ -2,6 +2,7 @@ package net.etfbl.prs.prs112212_z4;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 
 /****************************************************************************
  * Copyright (c) 2016 Elektrotehnicki fakultet
@@ -32,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         adapter = new RecipeAdapter(this);
+        ListView listView = (ListView) findViewById(R.id.list);
+        listView.setAdapter(adapter);
         helper = new RecipeDbHelper(this);
-updateList();
+        updateList();
     }
 
     private void updateList() {
         adapter.setList(helper.getAll());
-
     }
 }
