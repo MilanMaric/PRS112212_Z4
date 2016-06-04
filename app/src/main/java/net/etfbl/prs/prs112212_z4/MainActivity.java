@@ -1,7 +1,8 @@
 package net.etfbl.prs.prs112212_z4;
 
-import android.support.v7.app.AppCompatActivity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 /****************************************************************************
  * Copyright (c) 2016 Elektrotehnicki fakultet
@@ -29,5 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
     }
 }
