@@ -8,4 +8,8 @@
     <string name="name">Name:</string>
     <string name="ingredients">Ingredients</string>
     <string name="error">Something went wrong!</string>
+    <string name="updated">Updated</string>
+    <string name="created">Created</string>
+    <string name="selected">Selected</string>
+    <string name="delete">Delete</string>
 </resources>

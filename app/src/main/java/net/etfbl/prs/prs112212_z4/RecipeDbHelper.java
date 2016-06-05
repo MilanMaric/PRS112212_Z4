@@ -101,8 +101,15 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.mm.yyyy hh:mm:ss");
         recipeDTO.setDate(simpleDateFormat.format(new Date()));
         ContentValues values = recipe2ContentValues(recipeDTO, false);
+        Log.d(TAG, "Update: " + recipeDTO);
         db.update(TABLE_RECIPE, values, " id = ?", new String[]{Long.toString(recipeDTO.getId())});
         return recipeDTO;
+    }
+
+    public int delete(RecipeDTO recipeDTO) {
+        SQLiteDatabase db = getDb();
+        Log.d(TAG, "Delete: " + recipeDTO);
+        return db.delete(TABLE_RECIPE, " id=?", new String[]{Integer.toString(recipeDTO.getId())});
     }
 
 
@@ -114,7 +121,14 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         String preparation = cursor.getString(cursor.getColumnIndex(COL_PREPARE));
         String ingredients = cursor.getString(cursor.getColumnIndex(COL_INGREDIENTS));
         String sdbm = cursor.getString(cursor.getColumnIndex(COL_SDBM));
-        RecipeDTO recipeDTO = new RecipeDTO(id, date, duration, name, preparation, ingredients, sdbm);
+        RecipeDTO recipeDTO = new RecipeDTO();
+        recipeDTO.setId(id);
+        recipeDTO.setDate(date);
+        recipeDTO.setDuration(duration);
+        recipeDTO.setName(name);
+        recipeDTO.setPrepare(preparation);
+        recipeDTO.setIngredients(ingredients);
+        recipeDTO.setSdbm(sdbm);
         Log.d(TAG, "cursor2Recipe: " + recipeDTO);
         return recipeDTO;
     }
@@ -123,6 +137,7 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         if (update)
             values.put(COL_ID, recipeDTO.getId());
+        values.put(COL_NAME,recipeDTO.getName());
         values.put(COL_DATE, recipeDTO.getDate());
         values.put(COL_DURATION, recipeDTO.getDuration());
         values.put(COL_INGREDIENTS, recipeDTO.getIngredients());

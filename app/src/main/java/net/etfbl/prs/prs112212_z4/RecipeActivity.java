@@ -45,18 +45,18 @@ public class RecipeActivity extends AppCompatActivity {
                                 helper.insert(recipe);
                                 Intent result = new Intent();
                                 setResult(Activity.RESULT_OK, result);
+                                Toast.makeText(RecipeActivity.this, R.string.created, Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                             break;
-                        case MainActivity.ACTION_UPDATE_RECIPE:
+                        default:
                             if (view2Recipe()) {
                                 helper.update(recipe);
                                 Intent result = new Intent();
                                 setResult(Activity.RESULT_OK, result);
                                 finish();
+                                Toast.makeText(RecipeActivity.this, R.string.updated, Toast.LENGTH_SHORT).show();
                             }
-                        default:
-                            Toast.makeText(RecipeActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
                             break;
 
                     }
@@ -74,7 +74,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void recipe2View() {
-        durationEditText.setText(recipe.getDuration());
+        durationEditText.setText(Integer.toString(recipe.getDuration()));
         nameEditText.setText(recipe.getName());
         ingredientsEditText.setText(recipe.getIngredients());
         prepartationEditText.setText(recipe.getPrepare());

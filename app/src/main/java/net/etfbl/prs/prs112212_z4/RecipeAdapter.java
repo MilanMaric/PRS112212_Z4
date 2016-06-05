@@ -1,6 +1,7 @@
 package net.etfbl.prs.prs112212_z4;
 
 import android.content.Context;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +34,11 @@ import java.util.List;
 public class RecipeAdapter extends BaseAdapter {
     private final Context context;
     private List<RecipeDTO> list = new ArrayList<>();
+    private SparseBooleanArray selected;
 
     public RecipeAdapter(Context context) {
         this.context = context;
+        selected = new SparseBooleanArray();
     }
 
 
@@ -62,6 +65,9 @@ public class RecipeAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.recipe_layout, null);
         }
         RecipeDTO recipe = (RecipeDTO) getItem(position);
+        if (selected.get(position)) {
+            view.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+        }
         TextView title = (TextView) view.findViewById(R.id.name);
         TextView ingredients = (TextView) view.findViewById(R.id.ingridients);
         TextView preparation = (TextView) view.findViewById(R.id.prepare);
@@ -77,5 +83,30 @@ public class RecipeAdapter extends BaseAdapter {
     public void setList(List<RecipeDTO> list) {
         this.list = list;
         notifyDataSetChanged();
+    }
+
+    public void toggleSelection(int position) {
+        selectView(position, !selected.get(position));
+    }
+
+    public void removeSelection() {
+        selected = new SparseBooleanArray();
+        notifyDataSetChanged();
+    }
+
+    public void selectView(int position, boolean value) {
+        if (value)
+            selected.put(position, value);
+        else
+            selected.delete(position);
+        notifyDataSetChanged();
+    }
+
+    public int getSelectedCount() {
+        return selected.size();
+    }
+
+    public SparseBooleanArray getSelectedIds() {
+        return selected;
     }
 }
