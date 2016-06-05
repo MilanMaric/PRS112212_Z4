@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String ACTION_UPDATE_RECIPE = "ACTION_UPDATE_RECIPE";
     public static final String EXTRA_RECIPE = "EXTRA_RECIPE";
     private static final int REQUEST_CODE_UPDATE = 2;
+    public static final String TAG = "MainActivity";
     private RecipeAdapter adapter;
     private RecipeDbHelper helper;
     private FloatingActionButton button;
@@ -108,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onDestroyActionMode(ActionMode mode) {
+                    Log.d(TAG, "onDestroyActionMode");
                     adapter.removeSelection();
                 }
             });

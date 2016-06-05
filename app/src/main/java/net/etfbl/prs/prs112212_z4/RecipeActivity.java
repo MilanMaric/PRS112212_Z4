@@ -82,19 +82,39 @@ public class RecipeActivity extends AppCompatActivity {
 
     private boolean view2Recipe() {
         //TODO add validation
-        recipe.setDuration(Integer.parseInt(durationEditText.getText().toString()));
-        recipe.setName(nameEditText.getText().toString());
-        recipe.setIngredients(ingredientsEditText.getText().toString());
-        recipe.setPrepare(prepartationEditText.getText().toString());
+        if (valid()) {
+            recipe.setDuration(Integer.parseInt(durationEditText.getText().toString()));
+            recipe.setName(nameEditText.getText().toString());
+            recipe.setIngredients(ingredientsEditText.getText().toString());
+            recipe.setPrepare(prepartationEditText.getText().toString());
+            return true;
+        } else {
+            Toast.makeText(this, R.string.not_valid, Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
+    private boolean valid() {
+
+        try {
+            if (!checkText(durationEditText.getText().toString()))
+                return false;
+            if (Integer.parseInt(durationEditText.getText().toString()) < 0)
+                return false;
+            if (!checkText(nameEditText.getText().toString()))
+                return false;
+            if (!checkText(ingredientsEditText.getText().toString()))
+                return false;
+            if (!checkText(prepartationEditText.getText().toString()))
+                return false;
+        } catch (NumberFormatException e) {
+            return false;
+        }
         return true;
     }
 
     private boolean checkText(String text) {
-        if (text == null)
-            return false;
-        if ("".equals(text))
-            return false;
-        return true;
+        return text != null && !"".equals(text);
     }
 
 
