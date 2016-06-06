@@ -137,11 +137,15 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         if (update)
             values.put(COL_ID, recipeDTO.getId());
-        values.put(COL_NAME,recipeDTO.getName());
+        values.put(COL_NAME, recipeDTO.getName());
         values.put(COL_DATE, recipeDTO.getDate());
         values.put(COL_DURATION, recipeDTO.getDuration());
         values.put(COL_INGREDIENTS, recipeDTO.getIngredients());
         values.put(COL_PREPARE, recipeDTO.getPrepare());
+        String concat = recipeDTO.getIngredients() + recipeDTO.getPrepare();
+        Hash hash = new Hash();
+        long h = hash.getHash(concat);
+        recipeDTO.setSdbm(Long.toString(h));
         values.put(COL_SDBM, recipeDTO.getSdbm());
         return values;
     }

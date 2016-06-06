@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE = 1;
     public static final String ACTION_UPDATE_RECIPE = "ACTION_UPDATE_RECIPE";
     public static final String EXTRA_RECIPE = "EXTRA_RECIPE";
-    private static final int REQUEST_CODE_UPDATE = 2;
     public static final String TAG = "MainActivity";
+    private static final int REQUEST_CODE_UPDATE = 2;
     private RecipeAdapter adapter;
     private RecipeDbHelper helper;
     private FloatingActionButton button;
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
                     final int checkedCount = listView.getCheckedItemCount();
                     mode.setTitle(checkedCount + " " + getString(R.string.selected));
                     adapter.toggleSelection(position);
-                }
 
+                }
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                     mode.getMenuInflater().inflate(R.menu.main, menu);
@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
+
         helper = new RecipeDbHelper(this);
         updateList();
     }
@@ -133,10 +134,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         updateList();
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE) {
-
-        }
     }
 
     private void updateList() {

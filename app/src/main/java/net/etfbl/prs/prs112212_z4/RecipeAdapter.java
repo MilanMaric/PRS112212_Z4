@@ -65,18 +65,17 @@ public class RecipeAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.recipe_layout, null);
         }
         RecipeDTO recipe = (RecipeDTO) getItem(position);
-//        if (selected.get(position)) {
-//            view.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-//        }
         TextView title = (TextView) view.findViewById(R.id.name);
         TextView ingredients = (TextView) view.findViewById(R.id.ingridients);
         TextView preparation = (TextView) view.findViewById(R.id.prepare);
         TextView date = (TextView) view.findViewById(R.id.date);
+        TextView sdbm = (TextView) view.findViewById(R.id.sdbm);
 
         title.setText(recipe.getName());
         ingredients.setText(recipe.getIngredients());
         preparation.setText(recipe.getPrepare());
         date.setText(recipe.getDate());
+        sdbm.setText(recipe.getSdbm());
         return view;
     }
 
