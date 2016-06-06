@@ -144,8 +144,8 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         values.put(COL_PREPARE, recipeDTO.getPrepare());
         String concat = recipeDTO.getIngredients() + recipeDTO.getPrepare();
         Hash hash = new Hash();
-        long h = hash.getHash(concat);
-        recipeDTO.setSdbm(Long.toString(h));
+        long h = (long) hash.getHash(concat);
+        recipeDTO.setSdbm(String.format("%x", h));
         values.put(COL_SDBM, recipeDTO.getSdbm());
         return values;
     }
