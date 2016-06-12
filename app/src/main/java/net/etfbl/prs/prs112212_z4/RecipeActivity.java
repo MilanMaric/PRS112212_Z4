@@ -66,6 +66,9 @@ public class RecipeActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method is used to get references to edit text instances
+     */
     private void getEditTextRefs() {
         durationEditText = (EditText) findViewById(R.id.r_duration);
         nameEditText = (EditText) findViewById(R.id.r_name);
@@ -73,6 +76,9 @@ public class RecipeActivity extends AppCompatActivity {
         prepartationEditText = (EditText) findViewById(R.id.r_prepare);
     }
 
+    /**
+     * This medhod is used to convert recipe to view objects, and fill view
+     */
     private void recipe2View() {
         durationEditText.setText(Integer.toString(recipe.getDuration()));
         nameEditText.setText(recipe.getName());
@@ -80,6 +86,11 @@ public class RecipeActivity extends AppCompatActivity {
         prepartationEditText.setText(recipe.getPrepare());
     }
 
+    /**
+     * This method is used to convert view components to recipe object
+     *
+     * @return boolean, true if valid, false if not
+     */
     private boolean view2Recipe() {
         //TODO add validation
         if (valid()) {
@@ -94,6 +105,11 @@ public class RecipeActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * This method is used to validate the view objects
+     *
+     * @return boolean, true if valid, false if not
+     */
     private boolean valid() {
 
         try {
@@ -113,6 +129,12 @@ public class RecipeActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * This method is used to check if textView input is valid or not
+     *
+     * @param text text that should be validated
+     * @return boolean, true if valid, false if not
+     */
     private boolean checkText(String text) {
         return text != null && !"".equals(text);
     }

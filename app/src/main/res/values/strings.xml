@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">PRS112212_Z4</string>
+    <string name="app_name">MyRecipe</string>
     <string name="recipe">Recipe</string>
     <string name="duration">Duration:</string>
-    <string name="type">Type to change...</string>
+    <string name="type">Type to change…</string>
     <string name="preparation">Preparation:</string>
     <string name="save">Save</string>
     <string name="name">Name:</string>

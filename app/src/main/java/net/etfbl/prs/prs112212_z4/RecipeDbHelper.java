@@ -76,6 +76,11 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         return mDb;
     }
 
+    /**
+     * This is a wrapper method to get all the recipes
+     *
+     * @return list of recpies from the database
+     */
     public List<RecipeDTO> getAll() {
         List<RecipeDTO> list = new ArrayList<>();
         SQLiteDatabase db = getDb();
@@ -86,6 +91,12 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    /**
+     * This method is wrapper for the db.insert method.
+     *
+     * @param recipeDTO object that should be inserted into database
+     * @return same object with set id
+     */
     public RecipeDTO insert(RecipeDTO recipeDTO) {
         SQLiteDatabase db = getDb();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.mm.yyyy hh:mm:ss");
@@ -96,6 +107,12 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         return recipeDTO;
     }
 
+    /**
+     * This is a wrapper for db.update
+     *
+     * @param recipeDTO object
+     * @return same object
+     */
     public RecipeDTO update(RecipeDTO recipeDTO) {
         SQLiteDatabase db = getDb();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.mm.yyyy hh:mm:ss");
@@ -106,13 +123,24 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         return recipeDTO;
     }
 
+    /**
+     * Wrapper for the db.delete
+     *
+     * @param recipeDTO recipe object
+     * @return number of the rows affected
+     */
     public int delete(RecipeDTO recipeDTO) {
         SQLiteDatabase db = getDb();
         Log.d(TAG, "Delete: " + recipeDTO);
         return db.delete(TABLE_RECIPE, " id=?", new String[]{Integer.toString(recipeDTO.getId())});
     }
 
-
+    /**
+     * This is a helper method used to convert cursor to recipe
+     *
+     * @param cursor cursor
+     * @return recipe
+     */
     private RecipeDTO cursor2Recipe(Cursor cursor) {
         int id = cursor.getInt(cursor.getColumnIndex(COL_ID));
         String date = cursor.getString(cursor.getColumnIndex(COL_DATE));
@@ -133,6 +161,13 @@ public class RecipeDbHelper extends SQLiteOpenHelper {
         return recipeDTO;
     }
 
+    /**
+     * This method is used to convert recipe to contentValues
+     *
+     * @param recipeDTO recipe
+     * @param update    is it updating, or not
+     * @return values
+     */
     private ContentValues recipe2ContentValues(RecipeDTO recipeDTO, boolean update) {
         ContentValues values = new ContentValues();
         if (update)

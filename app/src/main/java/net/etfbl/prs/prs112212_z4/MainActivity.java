@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     adapter.toggleSelection(position);
 
                 }
+
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                     mode.getMenuInflater().inflate(R.menu.main, menu);
@@ -136,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
         updateList();
     }
 
+    /**
+     * This method is used to update the list of recipes.
+     */
     private void updateList() {
         adapter.setList(helper.getAll());
     }

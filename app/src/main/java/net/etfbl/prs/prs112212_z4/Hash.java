@@ -8,7 +8,7 @@ package net.etfbl.prs.prs112212_z4;
  * <p/>
  * \file net.etfbl.prs.prs112212_z4 Hash
  * \brief
- * This file contains a source code for class TaskAdapter
+ * This file contains a source code for class Hash
  * <p/>
  * Created on 05.06.2016
  *
@@ -25,5 +25,11 @@ public class Hash {
         System.loadLibrary("Hash");
     }
 
+    /**
+     * This function is used to calculate hash using C programming language
+     *
+     * @param k String that you want calculate hash for
+     * @return hash value
+     */
     public native long getHash(String k);
 }

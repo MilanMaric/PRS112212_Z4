@@ -36,6 +36,11 @@ public class RecipeAdapter extends BaseAdapter {
     private List<RecipeDTO> list = new ArrayList<>();
     private SparseBooleanArray selected;
 
+    /**
+     * This is constructor of the RecipeAdapter class. This method creates a instance of the RecipeAdapter class
+     *
+     * @param context context where this adapter is used
+     */
     public RecipeAdapter(Context context) {
         this.context = context;
         selected = new SparseBooleanArray();
@@ -79,20 +84,40 @@ public class RecipeAdapter extends BaseAdapter {
         return view;
     }
 
+    /**
+     * This method is used to update the list of recipes.
+     *
+     * @param list List of the recipes
+     */
     public void setList(List<RecipeDTO> list) {
         this.list = list;
         notifyDataSetChanged();
     }
 
+    /**
+     * This method is used to select if it's not selected/ deselect if it's selecteced (toggle)
+     * selection at specific position
+     *
+     * @param position position of the view
+     */
     public void toggleSelection(int position) {
         selectView(position, !selected.get(position));
     }
 
+    /**
+     * This method is used to cancel selection
+     */
     public void removeSelection() {
         selected = new SparseBooleanArray();
         notifyDataSetChanged();
     }
 
+    /**
+     * This method is used to select view
+     *
+     * @param position position of the view in the list
+     * @param value    true/false should the view be selected or not
+     */
     public void selectView(int position, boolean value) {
         if (value)
             selected.put(position, value);
@@ -101,10 +126,20 @@ public class RecipeAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * This method is used to get number of the selected items
+     *
+     * @return number of selected items
+     */
     public int getSelectedCount() {
         return selected.size();
     }
 
+    /**
+     * This method is used to get id's of the selected items
+     *
+     * @return SparseBooleanArray selected positions
+     */
     public SparseBooleanArray getSelectedIds() {
         return selected;
     }
