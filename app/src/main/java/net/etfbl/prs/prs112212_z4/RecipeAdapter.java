@@ -71,12 +71,15 @@ public class RecipeAdapter extends BaseAdapter {
         }
         RecipeDTO recipe = (RecipeDTO) getItem(position);
         TextView title = (TextView) view.findViewById(R.id.name);
+        TextView duration = (TextView) view.findViewById(R.id.duration);
+
         TextView ingredients = (TextView) view.findViewById(R.id.ingridients);
         TextView preparation = (TextView) view.findViewById(R.id.prepare);
         TextView date = (TextView) view.findViewById(R.id.date);
         TextView sdbm = (TextView) view.findViewById(R.id.sdbm);
-
+        String dur = context.getString(R.string.duration) + " " + recipe.getDuration() + " " + context.getString(R.string.minutes);
         title.setText(recipe.getName());
+        duration.setText(dur);
         ingredients.setText(recipe.getIngredients());
         preparation.setText(recipe.getPrepare());
         date.setText(recipe.getDate());

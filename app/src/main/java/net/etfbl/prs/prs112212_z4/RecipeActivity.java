@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 public class RecipeActivity extends AppCompatActivity {
 
+    public static final int MAX_DURATION = 1440;
     private String action;
     private RecipeDbHelper helper;
     private RecipeDTO recipe;
@@ -115,7 +116,8 @@ public class RecipeActivity extends AppCompatActivity {
         try {
             if (!checkText(durationEditText.getText().toString()))
                 return false;
-            if (Integer.parseInt(durationEditText.getText().toString()) < 0)
+            int duration = Integer.parseInt(durationEditText.getText().toString());
+            if (duration < 0 || duration > MAX_DURATION)
                 return false;
             if (!checkText(nameEditText.getText().toString()))
                 return false;
@@ -139,5 +141,13 @@ public class RecipeActivity extends AppCompatActivity {
         return text != null && !"".equals(text);
     }
 
-
+    /**
+     * Use this method to trim empty spaces at the end of the string
+     *
+     * @param string string that should be trimmed
+     * @return trimmed string
+     */
+    public String trimEndOfString(String string) {
+        return string.replaceAll("\\s+$", "");
+    }
 }

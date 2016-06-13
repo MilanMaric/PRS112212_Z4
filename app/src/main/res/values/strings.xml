@@ -13,4 +13,5 @@
     <string name="selected">Selected</string>
     <string name="delete">Delete</string>
     <string name="not_valid">Your input is not valid</string>
+    <string name="minutes">min</string>
 </resources>

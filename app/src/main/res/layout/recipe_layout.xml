@@ -17,6 +17,12 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/title_size" />
 
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/duration"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
